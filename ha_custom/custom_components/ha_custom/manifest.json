@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@bulanovk"],
+  "config_flow": false,
+  "dependencies": [],
+  "documentation": "https://github.com/user/my_component/",
+  "domain": "ha_custom",
+  "iot_class": "cloud_polling",
+  "name": "Home Heat Calc",
+  "requirements": [],
+  "version": "1.0.0"
+}
