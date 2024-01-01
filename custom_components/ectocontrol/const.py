@@ -6,7 +6,7 @@ DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "1.0.0"
 
 
-ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
+ATTRIBUTION = "Data provided by https://my.ectostroy.ru/"
 ISSUE_URL = "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}/issues"
 
 # Icons

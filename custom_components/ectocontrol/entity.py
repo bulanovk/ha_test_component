@@ -23,7 +23,7 @@ class EctocontrolEntity(CoordinatorEntity):
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": NAME,
             "model": VERSION,
-            "manufacturer": NAME,
+            "manufacturer": "Ectostroy",
         }
 
     @property

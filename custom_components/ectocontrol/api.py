@@ -6,34 +6,39 @@ import socket
 import aiohttp
 import async_timeout
 
-TIMEOUT = 10
+from custom_components.ectocontrol.core.model import EctoControlAPIDevices
 
+TIMEOUT = 10
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 HEADERS = {"Content-type": "application/json; charset=UTF-8"}
+BASEURL = "https://my.ectostroy.ru/public_api/v0/"
 
 
 class EctocontrolApiClient:
     def __init__(
-        self, public_token: str,  session: aiohttp.ClientSession
+            self, public_token: str, session: aiohttp.ClientSession
     ) -> None:
-        """Sample API Client."""
         self._public_token = public_token
+        HEADERS["Authorization"] = f"Bearer {public_token}"
         self._session = session
 
-    async def async_get_data(self) -> dict:
-        """Get data from the API."""
-        url = "https://jsonplaceholder.typicode.com/posts/1"
-        return await self.api_wrapper("get", url)
+    async def async_get_devices(self) -> EctoControlAPIDevices:
+        url = f"{BASEURL}devices"
+        maps = await self.api_wrapper("get", url, headers=HEADERS)
+        return EctoControlAPIDevices(**maps)
 
-    async def async_set_title(self, value: str) -> None:
-        """Get data from the API."""
-        url = "https://jsonplaceholder.typicode.com/posts/1"
-        await self.api_wrapper("patch", url, data={"title": value}, headers=HEADERS)
+    async def async_get_data(self, data: EctoControlAPIDevices) -> EctoControlAPIDevices:
+        url = f"{BASEURL}/info"
+        ids = []
+        for device in data.devices:
+            ids.append(device.id)
+        res = await self.api_wrapper("patch", url, data={"ids": ids}, headers=HEADERS)
+        return EctoControlAPIDevices(**res)
 
     async def api_wrapper(
-        self, method: str, url: str, data: dict = {}, headers: dict = {}
+            self, method: str, url: str, data: dict = {}, headers: dict = {}
     ) -> dict:
         """Get information from the API."""
         try:

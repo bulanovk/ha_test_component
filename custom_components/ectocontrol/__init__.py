@@ -1,4 +1,3 @@
-
 import asyncio
 import logging
 from datetime import timedelta
@@ -17,6 +16,7 @@ from .const import CONF_USERNAME
 from .const import DOMAIN
 from .const import PLATFORMS
 from .const import STARTUP_MESSAGE
+from .core.model import EctoControlAPIDevices
 
 SCAN_INTERVAL = timedelta(seconds=30)
 
@@ -61,16 +61,18 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching data from the API."""
 
-    def __init__(
-        self,
-        hass: HomeAssistant,
-        client: EctocontrolApiClient,
-    ) -> None:
+    def __init__(self, hass: HomeAssistant,
+                 client: EctocontrolApiClient, ) -> None:
+        super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=SCAN_INTERVAL)
         """Initialize."""
         self.api = client
         self.platforms = []
 
-        super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=SCAN_INTERVAL)
+        async def asyncfunc() -> EctoControlAPIDevices:
+            return await client.async_get_devices()
+
+        self.devices = asyncio.run(asyncfunc()).devices
+
 
     async def _async_update_data(self):
         """Update data via library."""
