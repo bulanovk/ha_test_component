@@ -6,19 +6,19 @@ from homeassistant import config_entries
 from homeassistant import data_entry_flow
 
 
+
 from .const import *
 
 _LOGGER = logging.getLogger(__name__)
 
 
 @config_entries.HANDLERS.register(DOMAIN)
-class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class ExampleConfigFlow(data_entry_flow.FlowHandler):
     """Ectocontrol Custom config flow."""
     VERSION = 1
 
     data: Optional[Dict[str, Any]]
-
-    async def async_step_init(self, user_input: Optional[Dict[str, Any]] = None):
+    async def async_step_user(self, user_input: Optional[Dict[str, Any]] = None):
         """Invoked when a user initiates a flow via the user interface."""
         if user_input is not None:
             self.data = user_input
