@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant import config_entries, core
-from homeassistant.const import CONF_ACCESS_TOKEN, CONF_NAME, CONF_PATH, CONF_URL
+from homeassistant.const import CONF_ACCESS_TOKEN
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import CONF_REPOS, DOMAIN
@@ -14,22 +14,6 @@ _LOGGER = logging.getLogger(__name__)
 AUTH_SCHEMA = vol.Schema(
     {vol.Required(CONF_ACCESS_TOKEN): cv.string}
 )
-REPO_SCHEMA = vol.Schema(
-    {
-        vol.Required(CONF_PATH): cv.string,
-        vol.Optional(CONF_NAME): cv.string,
-        vol.Optional("add_another"): cv.boolean,
-    }
-)
-
-
-def validate_path(path: str) -> None:
-    """Validates a GitHub repo path.
-
-    Raises a ValueError if the path is invalid.
-    """
-    if len(path.split("/")) != 2:
-        raise ValueError
 
 
 async def validate_auth(access_token: str, hass: core.HomeAssistant) -> None:
@@ -38,7 +22,6 @@ async def validate_auth(access_token: str, hass: core.HomeAssistant) -> None:
     Raises a ValueError if the auth token is invalid.
     """
     session = async_get_clientsession(hass)
-
 
 
 class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -62,35 +45,5 @@ class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
-            step_id="user", data_schema=AUTH_SCHEMA, errors=errors
-        )
-
-    async def async_step_repo(self, user_input: Optional[Dict[str, Any]] = None):
-        """Second step in config flow to add a repo to watch."""
-        errors: Dict[str, str] = {}
-        if user_input is not None:
-            # Validate the path.
-            try:
-                validate_path(user_input[CONF_PATH])
-            except ValueError:
-                errors["base"] = "invalid_path"
-
-            if not errors:
-                # Input is valid, set data.
-                self.data[CONF_REPOS].append(
-                    {
-                        "path": user_input[CONF_PATH],
-                        "name": user_input.get(CONF_NAME, user_input[CONF_PATH]),
-                    }
-                )
-                # If user ticked the box show this form again so they can add an
-                # additional repo.
-                if user_input.get("add_another", False):
-                    return await self.async_step_repo()
-
-                # User is done adding repos, create the config entry.
-                return self.async_create_entry(title="GitHub Custom", data=self.data)
-
-        return self.async_show_form(
-            step_id="repo", data_schema=REPO_SCHEMA, errors=errors
+            step_id="user", data_schema=vol.Schema({vol.Required(CONF_ACCESS_TOKEN): str})
         )
