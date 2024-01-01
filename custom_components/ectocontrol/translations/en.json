@@ -4,8 +4,8 @@
             "user": {
                 "description": "Set the path to the scene file (default works with Home Assistant OS)",
                 "data": {
-                    "system_id": "Ectocontrol System ID",
-                    "public_token": "Public API Ectocontrol Token"
+                    "ax_system_id": "Ectocontrol System ID",
+                    "ax_public_token": "Public API Ectocontrol Token"
                 }
             }
         },
