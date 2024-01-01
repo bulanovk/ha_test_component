@@ -3,7 +3,7 @@
     // Optional. Title to show in list. Only will be rendered if placeholders required
     "flow_title": "Discovered Device ({host})",
     "step": {
-      "init": {
+      "user": {
         // Optional. Will show the integration name if omitted
         "title": "The user visible title of the `init` step.",
         // Optional

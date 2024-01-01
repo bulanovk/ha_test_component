@@ -26,7 +26,7 @@ class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
-            step_id="init",
+            step_id="user",
             data_schema=vol.Schema({vol.Required(ATTR_SYSTEM_ID): str, vol.Required(ATTR_PUBLIC_TOKEN): str})
 
         )
