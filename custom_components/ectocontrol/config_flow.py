@@ -7,7 +7,7 @@ from homeassistant import config_entries, core
 from homeassistant.const import CONF_ACCESS_TOKEN
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import CONF_REPOS, DOMAIN
+from .const import *
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -34,16 +34,17 @@ class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors: Dict[str, str] = {}
         if user_input is not None:
             try:
-                await validate_auth(user_input[CONF_ACCESS_TOKEN], self.hass)
+                await validate_auth(user_input[ATTR_PUBLIC_TOKEN], self.hass)
             except ValueError:
                 errors["base"] = "auth"
             if not errors:
                 # Input is valid, set data.
                 self.data = user_input
-                self.data[CONF_REPOS] = []
                 # Return the form of the next step.
                 return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
-            step_id="user", data_schema=vol.Schema({vol.Required(CONF_ACCESS_TOKEN): str})
+            step_id="user",
+            data_schema=vol.Schema({vol.Required(ATTR_SYSTEM_ID): str,vol.Required(ATTR_PUBLIC_TOKEN): str})
+
         )
