@@ -5,7 +5,8 @@
         "data": {
           "attr_ec_system_id": "Ectocontrol system ID ",
           "attr_ec_public_token": "Ectocontrol Public API token"
-        }
+        },
+        "description": "Please enter connection settings of your [ESPHome]({esphome_url}) node."
       }
     }
   }
