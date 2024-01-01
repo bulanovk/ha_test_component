@@ -2,7 +2,7 @@ from homeassistant import core
 from homeassistant.helpers.config_validation import PLATFORM_SCHEMA
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from .const import METAR_TOKEN_FIELD, DOMAIN
+
 
 
 async def async_setup(hass: core.HomeAssistant, config: dict) -> bool:
