@@ -5,6 +5,9 @@ DOMAIN = "ectocontrol"
 DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "1.0.0"
 
+CONF_SYSTEM_ID = "system_id"
+CONF_PUBLIC_TOKEN = "public_token"
+
 ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
 ISSUE_URL = "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}/issues"
 
