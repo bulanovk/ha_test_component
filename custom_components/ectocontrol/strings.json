@@ -11,7 +11,9 @@
       "user": {
         "title": "Pick Hue bridge",
         "data": {
-          "host": "Host"
+          "host": "Host",
+          "username": "login",
+          "password": "password"
         }
       },
       "link": {
