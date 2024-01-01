@@ -12,7 +12,7 @@ from .const import CONF_REPOS, DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 AUTH_SCHEMA = vol.Schema(
-    {vol.Required(CONF_ACCESS_TOKEN): cv.string, vol.Optional(CONF_URL): cv.string}
+    {vol.Required(CONF_ACCESS_TOKEN): cv.string}
 )
 REPO_SCHEMA = vol.Schema(
     {
@@ -41,7 +41,7 @@ async def validate_auth(access_token: str, hass: core.HomeAssistant) -> None:
 
 
 
-class GithubCustomConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Github Custom config flow."""
 
     data: Optional[Dict[str, Any]]
@@ -59,7 +59,7 @@ class GithubCustomConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 self.data = user_input
                 self.data[CONF_REPOS] = []
                 # Return the form of the next step.
-                return await self.async_step_repo()
+                return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
             step_id="user", data_schema=AUTH_SCHEMA, errors=errors
