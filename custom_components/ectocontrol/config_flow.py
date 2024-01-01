@@ -26,7 +26,7 @@ class ExampleConfigFlow(data_entry_flow.FlowHandler):
             return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
-            step_id="init",
+            step_id="user",
             data_schema=vol.Schema({vol.Required("host"): str, vol.Required(ATTR_PUBLIC_TOKEN): str})
 
         )
