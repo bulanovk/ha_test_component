@@ -1,5 +1,5 @@
 {
-  "name": "Home Heat Calc",
+  "name": "Ectocontrol Cloud Integration",
   "render_readme": true,
   "iot_class": "cloud_polling"
 }
