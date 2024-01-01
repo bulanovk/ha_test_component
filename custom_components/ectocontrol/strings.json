@@ -1,21 +1,26 @@
 {
   "config": {
+    // Optional. Title to show in list. Only will be rendered if placeholders required
+    "flow_title": "Discovered Device ({host})",
     "step": {
-      "user": {
+      "init": {
+        // Optional. Will show the integration name if omitted
+        "title": "The user visible title of the `init` step.",
+        // Optional
+        "description": "Markdown that is shown with the step.",
         "data": {
-          "host": "[%key:common::config_flow::data::host%]",
-          "username": "[%key:common::config_flow::data::username%]",
-          "password": "[%key:common::config_flow::data::password%]"
+          "attr_ec_system_id": "The label for the `api_key` input field"
         }
       }
     },
     "error": {
-      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-      "unknown": "[%key:common::config_flow::error::unknown%]"
+      "invalid_api_key": "This message will be displayed if `invalid_api_key` is returned as a flow error."
     },
     "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
+      "stale_api_key": "This message will be displayed if `stale_api_key` is returned as the abort reason."
+    },
+    "progress": {
+      "slow_task": "This message will be displayed if `slow_task` is returned as `progress_action` for `async_show_progress`."
     }
   }
 }
