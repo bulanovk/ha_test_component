@@ -44,7 +44,7 @@ If you have any issues with this you need to open an issue here:
 """
 
 
-CONF_SCENE_PATH = "scene_path"
+CONF_SCENE_PATH = "system_id"
 CONF_NUMBER_TOLERANCE = "number_tolerance"
 CONF_RESTORE_STATES_ON_DEACTIVATE = "restore_states_on_deactivate"
 CONF_TRANSITION_TIME = "transition_time"
