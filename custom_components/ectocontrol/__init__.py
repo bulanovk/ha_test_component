@@ -1,9 +1,4 @@
-"""
-Custom integration to integrate Ectocontrol with Home Assistant.
 
-For more details about this integration, please refer to
-https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}
-"""
 import asyncio
 import logging
 from datetime import timedelta
@@ -17,7 +12,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from homeassistant.helpers.update_coordinator import UpdateFailed
 
 from .api import EctocontrolApiClient
-from .const import CONF_PASSWORD
+from .const import *
 from .const import CONF_USERNAME
 from .const import DOMAIN
 from .const import PLATFORMS
@@ -39,11 +34,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         hass.data.setdefault(DOMAIN, {})
         _LOGGER.info(STARTUP_MESSAGE)
 
-    username = entry.data.get(CONF_USERNAME)
-    password = entry.data.get(CONF_PASSWORD)
+    public_token = entry.data.get(CONF_TOKEN)
 
     session = async_get_clientsession(hass)
-    client = EctocontrolApiClient(username, password, session)
+    client = EctocontrolApiClient(public_token, session)
 
     coordinator = EctocontrolDataUpdateCoordinator(hass, client=client)
     await coordinator.async_refresh()

@@ -7,7 +7,6 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.helpers import selector
 
-from custom_components.ectocontrol import DOMAIN
 from custom_components.ectocontrol.const import *
 
 _LOGGER = logging.getLogger(__name__)
@@ -27,7 +26,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             return self.async_create_entry(
-                title="Stateful Scenes",
+                title="Ectocontrol Integration",
                 data=user_input,
             )
 
@@ -44,4 +43,3 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             ),
             errors=_errors,
         )
-
