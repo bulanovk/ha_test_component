@@ -18,7 +18,7 @@ class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     data: Optional[Dict[str, Any]]
 
-    async def async_step_user(self, user_input: Optional[Dict[str, Any]] = None):
+    async def async_step_init(self, user_input: Optional[Dict[str, Any]] = None):
         """Invoked when a user initiates a flow via the user interface."""
         if user_input is not None:
             self.data = user_input
@@ -26,7 +26,7 @@ class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(title="Ectocontrol", data=self.data)
 
         return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema({vol.Required(ATTR_SYSTEM_ID): str, vol.Required(ATTR_PUBLIC_TOKEN): str})
+            step_id="init",
+            data_schema=vol.Schema({vol.Required("host"): str, vol.Required(ATTR_PUBLIC_TOKEN): str})
 
         )

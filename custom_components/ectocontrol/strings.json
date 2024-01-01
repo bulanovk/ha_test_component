@@ -1,26 +1,29 @@
 {
+  "title": "Philips Hue Bridge",
   "config": {
-    // Optional. Title to show in list. Only will be rendered if placeholders required
-    "flow_title": "Discovered Device ({host})",
     "step": {
-      "user": {
-        // Optional. Will show the integration name if omitted
-        "title": "The user visible title of the `init` step.",
-        // Optional
-        "description": "Markdown that is shown with the step.",
+      "init": {
+        "title": "Pick Hue bridge",
         "data": {
-          "attr_ec_system_id": "The label for the `api_key` input field"
+          "host": "Host"
         }
+      },
+      "link": {
+        "title": "Link Hub",
+        "description": "Press the button on the bridge to register Philips Hue with Home Assistant.\n\n![Location of button on bridge](/static/images/config_philips_hue.jpg)"
       }
     },
     "error": {
-      "invalid_api_key": "This message will be displayed if `invalid_api_key` is returned as a flow error."
+      "register_failed": "Failed to register, please try again",
+      "linking": "Unknown linking error occurred."
     },
     "abort": {
-      "stale_api_key": "This message will be displayed if `stale_api_key` is returned as the abort reason."
-    },
-    "progress": {
-      "slow_task": "This message will be displayed if `slow_task` is returned as `progress_action` for `async_show_progress`."
+      "discover_timeout": "Unable to discover Hue bridges",
+      "no_bridges": "No Philips Hue bridges discovered",
+      "all_configured": "All Philips Hue bridges are already configured",
+      "unknown": "Unknown error occurred",
+      "cannot_connect": "Unable to connect to the bridge",
+      "already_configured": "Bridge is already configured"
     }
   }
 }
