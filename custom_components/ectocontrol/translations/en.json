@@ -2,12 +2,9 @@
   "config": {
     "step": {
       "user": {
-        "description": "Set the path to the scene file (default works with Home Assistant OS)",
+        "description": "Please enter Ectocontrol Public API Token",
         "data": {
-          "new_scene_path": "Ectocontrol Public API Token",
-          "number_tolerance": "Ectocontrol ",
-          "restore_states_on_deactivate": "Restore states on deactivation",
-          "transition_time": "Transition time"
+          "system_id": "Ectocontrol Public API Token"
         }
       }
     },

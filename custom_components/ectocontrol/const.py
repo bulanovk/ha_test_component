@@ -42,7 +42,7 @@ If you have any issues with this you need to open an issue here:
 """
 
 
-CONF_SYSTEM_ID = "new_scene_path"
+CONF_SYSTEM_ID = "system_id"
 CONF_TOKEN = "number_tolerance"
 CONF_RESTORE_STATES_ON_DEACTIVATE = "restore_states_on_deactivate"
 CONF_TRANSITION_TIME = "transition_time"

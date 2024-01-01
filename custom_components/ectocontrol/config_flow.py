@@ -40,24 +40,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
-                    vol.Optional(
-                        CONF_TOKEN, default=DEFAULT_NUMBER_TOLERANCE
-                    ): selector.NumberSelector(
-                        selector.NumberSelectorConfig(
-                            min=TOLERANCE_MIN, max=TOLERANCE_MAX, step=TOLERANCE_STEP
-                        )
-                    ),
-                    vol.Optional(
-                        CONF_RESTORE_STATES_ON_DEACTIVATE,
-                        default=DEFAULT_RESTORE_STATES_ON_DEACTIVATE,
-                    ): selector.BooleanSelector(),
-                    vol.Optional(
-                        CONF_TRANSITION_TIME, default=DEFAULT_TRANSITION_TIME
-                    ): selector.NumberSelector(
-                        selector.NumberSelectorConfig(
-                            min=TRANSITION_MIN, max=TRANSITION_MAX, step=TRANSITION_STEP
-                        )
-                    ),
                 }
             ),
             errors=_errors,
