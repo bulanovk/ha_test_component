@@ -1,0 +1,12 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "attr_ec_system_id": "Ectocontrol system ID ",
+          "attr_ec_public_token": "Ectocontrol Public API token"
+        }
+      }
+    }
+  }
+}
