@@ -36,12 +36,12 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Optional(
-                        CONF_SCENE_PATH, default=DEFAULT_SCENE_PATH
+                        CONF_SYSTEM_ID, default=DEFAULT_SCENE_PATH
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
                     vol.Optional(
-                        CONF_NUMBER_TOLERANCES, default=DEFAULT_NUMBER_TOLERANCE
+                        CONF_TOKEN, default=DEFAULT_NUMBER_TOLERANCE
                     ): selector.NumberSelector(
                         selector.NumberSelectorConfig(
                             min=TOLERANCE_MIN, max=TOLERANCE_MAX, step=TOLERANCE_STEP

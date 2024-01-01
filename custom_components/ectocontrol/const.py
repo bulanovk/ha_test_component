@@ -5,8 +5,6 @@ DOMAIN = "ectocontrol"
 DOMAIN_DATA = f"{DOMAIN}_data"
 VERSION = "1.0.0"
 
-CONF_SYSTEM_ID = "ax_system_id"
-CONF_PUBLIC_TOKEN = "ax_public_token"
 
 ATTRIBUTION = "Data provided by http://jsonplaceholder.typicode.com/"
 ISSUE_URL = "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}/issues"
@@ -44,8 +42,8 @@ If you have any issues with this you need to open an issue here:
 """
 
 
-CONF_SCENE_PATH = "new_scene_path"
-CONF_NUMBER_TOLERANCES = "number_tolerance"
+CONF_SYSTEM_ID = "new_scene_path"
+CONF_TOKEN = "number_tolerance"
 CONF_RESTORE_STATES_ON_DEACTIVATE = "restore_states_on_deactivate"
 CONF_TRANSITION_TIME = "transition_time"
 
