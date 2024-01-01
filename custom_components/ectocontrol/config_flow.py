@@ -41,7 +41,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                         selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
                     vol.Optional(
-                        CONF_NUMBER_TOLERANCE, default=DEFAULT_NUMBER_TOLERANCE
+                        CONF_NUMBER_TOLERANCES, default=DEFAULT_NUMBER_TOLERANCE
                     ): selector.NumberSelector(
                         selector.NumberSelectorConfig(
                             min=TOLERANCE_MIN, max=TOLERANCE_MAX, step=TOLERANCE_STEP
