@@ -3,11 +3,19 @@
     "step": {
       "user": {
         "data": {
-          "attr_ec_system_id": "Ectocontrol system ID ",
-          "attr_ec_public_token": "Ectocontrol Public API token"
-        },
-        "description": "Please enter connection settings of your [ESPHome]({esphome_url}) node."
+          "host": "[%key:common::config_flow::data::host%]",
+          "username": "[%key:common::config_flow::data::username%]",
+          "password": "[%key:common::config_flow::data::password%]"
+        }
       }
+    },
+    "error": {
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_device%]"
     }
   }
 }

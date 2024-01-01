@@ -25,7 +25,7 @@ async def validate_auth(access_token: str, hass: core.HomeAssistant) -> None:
 
 
 class EctocontrolConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
-    """Github Custom config flow."""
+    """Ectocontrol Custom config flow."""
 
     data: Optional[Dict[str, Any]]
 
