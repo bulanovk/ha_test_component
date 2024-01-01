@@ -1,106 +1,179 @@
-"""Adds config flow for Ectocontrol."""
+import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant import config_entries
+from homeassistant.config_entries import ConfigFlow, OptionsFlow, ConfigEntry
 from homeassistant.core import callback
+from homeassistant.data_entry_flow import FlowHandler
 from homeassistant.helpers.aiohttp_client import async_create_clientsession
 
-from .api import EctocontrolApiClient
-from .const import CONF_PASSWORD
-from .const import CONF_USERNAME
-from .const import DOMAIN
-from .const import PLATFORMS
+from . import DOMAIN
+
+ACTIONS = {"cloud": "Add Mi Cloud Account", "token": "Add Gateway using Token"}
+
+SERVERS = {
+    "cn": "China",
+    "de": "Europe",
+    "i2": "India",
+    "ru": "Russia",
+    "sg": "Singapore",
+    "us": "United States",
+}
+
+OPT_DEBUG = {
+    "true": "Basic logs",
+    "mqtt": "MQTT logs",
+    "zigbee": "Zigbee logs",
+}
 
 
-class EctocontrolFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    """Config flow for ectocontrol."""
+def form(
+    flow: FlowHandler,
+    step_id: str,
+    schema: dict,
+    defaults: dict = None,
+    template: dict = None,
+    error: str = None,
+):
+    """Suppport:
+    - overwrite schema defaults from dict (user_input or entry.options)
+    - set base error code (translations > config > error > code)
+    - set custom error via placeholders ("template": "{error}")
+    """
+    if defaults:
+        for key in schema:
+            if key.schema in defaults:
+                key.default = vol.default_factory(defaults[key.schema])
 
+    if template and "error" in template:
+        error = {"base": "template"}
+    elif error:
+        error = {"base": error}
+
+    return flow.async_show_form(
+        step_id=step_id,
+        data_schema=vol.Schema(schema),
+        description_placeholders=template,
+        errors=error,
+    )
+
+
+class FlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 1
-    CONNECTION_CLASS = config_entries.CONN_CLASS_CLOUD_POLL
-
-    def __init__(self):
-        """Initialize."""
-        self._errors = {}
+    cloud = None
 
     async def async_step_user(self, user_input=None):
-        """Handle a flow initialized by the user."""
-        self._errors = {}
-
-        # Uncomment the next 2 lines if only a single instance of the integration is allowed:
-        # if self._async_current_entries():
-        #     return self.async_abort(reason="single_instance_allowed")
-
         if user_input is not None:
-            valid = await self._test_credentials(
-                user_input[CONF_USERNAME], user_input[CONF_PASSWORD]
-            )
-            if valid:
-                return self.async_create_entry(
-                    title=user_input[CONF_USERNAME], data=user_input
-                )
+            if user_input["action"] == "cloud":
+                return await self.async_step_cloud()
+            elif user_input["action"] == "token":
+                return await self.async_step_token()
             else:
-                self._errors["base"] = "auth"
+                device = next(
+                    device
+                    for device in self.hass.data[DOMAIN]["devices"]
+                    if device["did"] == user_input["action"]
+                )
+                return self.async_show_form(
+                    step_id="token",
+                    data_schema=vol.Schema(
+                        {
+                            vol.Required("host", default=device["localip"]): str,
+                            vol.Required("token", default=device["token"]): str,
+                            vol.Optional("key"): str,
+                        }
+                    ),
+                )
 
-            return await self._show_config_form(user_input)
 
-        return await self._show_config_form(user_input)
-
-    @staticmethod
-    @callback
-    def async_get_options_flow(config_entry):
-        return EctocontrolOptionsFlowHandler(config_entry)
-
-    async def _show_config_form(self, user_input):  # pylint: disable=unused-argument
-        """Show the configuration form to edit location data."""
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
-                {vol.Required(CONF_USERNAME): str, vol.Required(CONF_PASSWORD): str}
+                {vol.Required("action", default="cloud"): vol.In(ACTIONS)}
             ),
-            errors=self._errors,
         )
 
-    async def _test_credentials(self, username, password):
-        """Return true if credentials is valid."""
-        try:
-            session = async_create_clientsession(self.hass)
-            client = EctocontrolApiClient(username, password, session)
-            await client.async_get_data()
-            return True
-        except Exception:  # pylint: disable=broad-except
-            pass
-        return False
+    async def async_step_cloud(self, data=None):
+        kwargs = {
+            "step_id": "cloud",
+            "schema": {
+                vol.Required("username"): str,
+                vol.Required("password"): str,
+                vol.Required("servers", default=["cn"]): cv.multi_select(SERVERS),
+            },
+            "defaults": data,
+            "template": {"verify": ""},
+        }
+
+        if data:
+            if data["servers"]:
+                session = async_create_clientsession(self.hass)
+                kwargs["error"] = "no_servers"
+
+        return form(self, **kwargs)
+
+    async def async_step_token(self, user_input: dict = None, error=None):
+        """GUI > Configuration > Integrations > Plus > Xiaomi Gateway 3"""
+        if user_input is not None:
+            # check gateway, key is optional
 
 
-class EctocontrolOptionsFlowHandler(config_entries.OptionsFlow):
-    """Config flow options handler for ectocontrol."""
+            return self.async_create_entry(
+                title=user_input["host"], data={}, options=user_input
+            )
 
-    def __init__(self, config_entry):
-        """Initialize HACS options flow."""
-        self.config_entry = config_entry
-        self.options = dict(config_entry.options)
+        return self.async_show_form(
+            step_id="token",
+            data_schema=vol.Schema(
+                {
+                    vol.Required("host"): str,
+                    vol.Required("token"): str,
+                    vol.Optional("key"): str,
+                }
+            ),
+            errors={"base": error} if error else None,
+        )
 
-    async def async_step_init(self, user_input=None):  # pylint: disable=unused-argument
-        """Manage the options."""
-        return await self.async_step_user()
+    @staticmethod
+    @callback
+    def async_get_options_flow(entry: ConfigEntry):
+        return OptionsFlowHandler(entry)
+
+
+# noinspection PyUnusedLocal
+class OptionsFlowHandler(OptionsFlow):
+    def __init__(self, entry: ConfigEntry):
+        self.entry = entry
+
+    async def async_step_init(self, user_input=None):
+        if "servers" in self.entry.data:
+            return await self.async_step_cloud()
+        else:
+            return await self.async_step_user()
+
 
     async def async_step_user(self, user_input=None):
-        """Handle a flow initialized by the user."""
-        if user_input is not None:
-            self.options.update(user_input)
-            return await self._update_options()
+        if user_input:
+            return self.async_create_entry(title="", data=user_input)
+
+        host = self.entry.options["host"]
+        token = self.entry.options["token"]
+        key = self.entry.options.get("key")
+        ble = self.entry.options.get("ble", True)
+        stats = self.entry.options.get("stats", False)
+        debug = self.entry.options.get("debug", [])
+
+        # filter only supported items
+        debug = [k for k in debug if k in OPT_DEBUG]
 
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    vol.Required(x, default=self.options.get(x, True)): bool
-                    for x in sorted(PLATFORMS)
+                    vol.Required("host", default=host): str,
+                    vol.Required("token", default=token): str,
+                    vol.Optional("key", default=key): str,
+                    vol.Required("ble", default=ble): bool,
+                    vol.Optional("stats", default=stats): bool,
+                    vol.Optional("debug", default=debug): cv.multi_select(OPT_DEBUG),
                 }
             ),
-        )
-
-    async def _update_options(self):
-        """Update config entry options."""
-        return self.async_create_entry(
-            title=self.config_entry.data.get(CONF_USERNAME), data=self.options
         )

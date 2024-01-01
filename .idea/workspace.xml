@@ -5,50 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
-      <change afterPath="$PROJECT_DIR$/.cookiecutter.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.devcontainer/configuration.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.devcontainer/devcontainer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ha_test_component.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.pre-commit-config.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/binary_sensor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/sensor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/switch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/en.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/fr.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/nb.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/info.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements_dev.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements_test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/const.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_config_flow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_init.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_switch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/const.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/strings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hacs.json" beforeDir="false" afterPath="$PROJECT_DIR$/hacs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/translations/fr.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/translations/nb.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +18,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "bulanovk"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="e73db276-b714-44ae-8ef4-b5f8be51f7e6" />
+        <option name="url" value="https://github.com/bulanovk/ha_test_component.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -73,6 +48,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/projects/ha-components",
@@ -101,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1704118514596</updated>
       <workItem from="1704118516601" duration="8807000" />
-      <workItem from="1704127378067" duration="136000" />
+      <workItem from="1704127378067" duration="1388000" />
     </task>
     <task id="LOCAL-00001" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -279,7 +255,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704126213495</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704127543560</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1704127543560</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704127843786</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1704127843786</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
