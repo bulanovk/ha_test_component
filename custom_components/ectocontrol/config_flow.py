@@ -27,7 +27,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             return self.async_create_entry(
-                title="Ectocontrol System",
+                title="Stateful Scenes",
                 data=user_input,
             )
 
@@ -36,14 +36,27 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Optional(
-                        CONF_SYSTEM_ID, default=DEFAULT_SCENE_PATH
+                        CONF_SCENE_PATH, default=DEFAULT_SCENE_PATH
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
                     vol.Optional(
-                        CONF_PUBLIC_TOKEN, default=DEFAULT_SCENE_PATH
-                    ): selector.TextSelector(
-                        selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+                        CONF_NUMBER_TOLERANCE, default=DEFAULT_NUMBER_TOLERANCE
+                    ): selector.NumberSelector(
+                        selector.NumberSelectorConfig(
+                            min=TOLERANCE_MIN, max=TOLERANCE_MAX, step=TOLERANCE_STEP
+                        )
+                    ),
+                    vol.Optional(
+                        CONF_RESTORE_STATES_ON_DEACTIVATE,
+                        default=DEFAULT_RESTORE_STATES_ON_DEACTIVATE,
+                    ): selector.BooleanSelector(),
+                    vol.Optional(
+                        CONF_TRANSITION_TIME, default=DEFAULT_TRANSITION_TIME
+                    ): selector.NumberSelector(
+                        selector.NumberSelectorConfig(
+                            min=TRANSITION_MIN, max=TRANSITION_MAX, step=TRANSITION_STEP
+                        )
                     ),
                 }
             ),
