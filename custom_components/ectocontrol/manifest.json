@@ -1,12 +1,10 @@
 {
-  "codeowners": ["@bulanovk"],
-  "config_flow": true,
-  "dependencies": [],
-  "documentation": "https://github.com/user/my_component/",
   "domain": "ectocontrol",
-  "iot_class": "cloud_polling",
-  "integration_type": "hub",
-  "name": "Ectocontrol Cloud Integration",
-  "requirements": [],
-  "version": "1.0.0"
+  "name": "Ectocontrol",
+  "documentation": "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}",
+  "issue_tracker": "https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}/issues",
+  "dependencies": [],
+  "config_flow": true,
+  "codeowners": ["@{{cookiecutter.github_user}}"],
+  "requirements": []
 }
