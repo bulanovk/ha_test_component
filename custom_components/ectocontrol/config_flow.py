@@ -35,8 +35,16 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=vol.Schema(
                 {
-                    vol.Required(CONF_SYSTEM_ID): str,
-                    vol.Required(CONF_PUBLIC_TOKEN): str
+                    vol.Optional(
+                        CONF_SYSTEM_ID, default=DEFAULT_SCENE_PATH
+                    ): selector.TextSelector(
+                        selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+                    ),
+                    vol.Optional(
+                        CONF_PUBLIC_TOKEN, default=DEFAULT_SCENE_PATH
+                    ): selector.TextSelector(
+                        selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+                    ),
                 }
             ),
             errors=_errors,
