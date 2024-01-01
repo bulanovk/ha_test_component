@@ -1,32 +1,18 @@
-import logging
-from typing import Any, Dict, Optional
+from homeassistant.helpers.selector import selector
 
-import voluptuous as vol
-from homeassistant import config_entries
-from homeassistant import data_entry_flow
-
-
-
-from .const import *
-
-_LOGGER = logging.getLogger(__name__)
-
-
-@config_entries.HANDLERS.register(DOMAIN)
 class ExampleConfigFlow(data_entry_flow.FlowHandler):
-    """Ectocontrol Custom config flow."""
-    VERSION = 1
+    async def async_step_user(self, user_input=None):
+        # Specify items in the order they are to be displayed in the UI
+        data_schema = {
+            vol.Required("username"): str,
+            vol.Required("password"): str,
+        }
 
-    data: Optional[Dict[str, Any]]
-    async def async_step_user(self, user_input: Optional[Dict[str, Any]] = None):
-        """Invoked when a user initiates a flow via the user interface."""
-        if user_input is not None:
-            self.data = user_input
-            # Return the form of the next step.
-            return self.async_create_entry(title="Ectocontrol", data=self.data)
+        if self.show_advanced_options:
+            data_schema["allow_groups"] = selector({
+                "select": {
+                    "options": ["all", "light", "switch"],
+                }
+            })
 
-        return self.async_show_form(
-            step_id="user",
-            data_schema=vol.Schema({vol.Required("host"): str, vol.Required(ATTR_PUBLIC_TOKEN): str})
-
-        )
+        return self.async_show_form(step_id="init", data_schema=vol.Schema(data_schema))
