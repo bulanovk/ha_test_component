@@ -4,7 +4,7 @@
       "user": {
         "description": "Please enter Ectocontrol Public API Token",
         "data": {
-          "system_id": "Ectocontrol Public API Token"
+          "public_token": "Ectocontrol Public API Token"
         }
       }
     },

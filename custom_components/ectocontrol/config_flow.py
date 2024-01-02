@@ -35,7 +35,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Optional(
-                        CONF_SYSTEM_ID, default=DEFAULT_SCENE_PATH
+                        CONF_PUBLIC_TOKEN, default=DEFAULT_SCENE_PATH
                     ): selector.TextSelector(
                         selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
                     ),
