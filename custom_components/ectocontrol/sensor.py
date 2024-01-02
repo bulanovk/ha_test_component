@@ -12,8 +12,8 @@ async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator: EctocontrolDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
     devices: EctoControlAPIDevices = await coordinator.api.async_get_devices()
-    for devices in devices.devices:
-        async_add_devices([EctocontrolSensor(coordinator, entry)])
+    for device in devices.devices:
+        async_add_devices([EctocontrolSensor(coordinator, entry, device)])
 
 
 class EctocontrolSensor(EctocontrolEntity):

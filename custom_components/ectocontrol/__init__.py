@@ -68,11 +68,11 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
         """Initialize."""
         self.api = client
         self.platforms = []
+        self.devices = []
 
-        d: EctoControlAPIDevices = asyncio.run_coroutine_threadsafe(
-            client.async_get_devices(), hass.loop
-        ).result()
-        self.devices = d.devices
+    async def update_devices(self):
+        devices = await self.api.async_get_devices()
+        self.devices = devices.devices
 
     async def _async_update_data(self):
         """Update data via library."""
