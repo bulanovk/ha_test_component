@@ -37,11 +37,12 @@ class EctocontrolApiClient:
 
     async def async_get_data(self, data: EctoControlAPIDevices) -> dict:
         _LOGGER.debug("API get Data Start")
-        if data.devices is []:
+        if not data.devices:
             _LOGGER.debug("No Devices to Update")
             return {"data": EctoControlAPIDevices(None)}
         url = f"{BASEURL}/info"
         ids = []
+        _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}")
         for device in data.devices:
             ids.append(device.id)
         res = await self.api_wrapper("patch", url, data={"ids": ids}, headers=HEADERS)
