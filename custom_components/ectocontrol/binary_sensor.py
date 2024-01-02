@@ -11,7 +11,7 @@ from .entity import EctocontrolEntity
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup binary_sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    async_add_devices([EctocontrolBinarySensor(coordinator, entry)])
+    # async_add_devices([EctocontrolBinarySensor(coordinator, entry)])
 
 
 class EctocontrolBinarySensor(EctocontrolEntity, BinarySensorEntity):
