@@ -45,7 +45,7 @@ class EctocontrolApiClient:
         _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}")
         for device in data.devices:
             ids.append(device.id)
-        res = await self.api_wrapper("patch", url, data={"ids": ids}, headers=HEADERS)
+        res = await self.api_wrapper("post", url, data={"ids": ids}, headers=HEADERS)
         return {"data": EctoControlAPIDevices(**res)}
 
     async def api_wrapper(
