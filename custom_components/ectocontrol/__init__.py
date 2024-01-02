@@ -69,11 +69,9 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
         self.api = client
         self.platforms = []
 
-        async def asyncfunc() -> EctoControlAPIDevices:
-            return await client.async_get_devices()
-
-        r: Future[EctoControlAPIDevices] = hass.async_add_job(asyncfunc)
-        d: EctoControlAPIDevices = r.result()
+        d: EctoControlAPIDevices = asyncio.run_coroutine_threadsafe(
+            client.async_get_devices(), hass.loop
+        ).result()
         self.devices = d.devices
 
     async def _async_update_data(self):
