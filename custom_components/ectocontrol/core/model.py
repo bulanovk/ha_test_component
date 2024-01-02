@@ -14,6 +14,9 @@ class EctoControlAPIDevice:
         self.name = name
         self.type = type
 
+    def __str__(self):
+        return f'{self.id}'
+
 
 class EctoControlAPIDevices:
     devices: List[EctoControlAPIDevice]
@@ -23,3 +26,6 @@ class EctoControlAPIDevices:
         if devices is not None:
             for device in devices:
                 self.devices.append(EctoControlAPIDevice(**device))
+
+    def __str__(self):
+        return str(self.devices)

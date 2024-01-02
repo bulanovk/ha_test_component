@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
       <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/const.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/translations/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/translations/ru.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,31 +78,7 @@
       <updated>1704118514596</updated>
       <workItem from="1704118516601" duration="8807000" />
       <workItem from="1704127378067" duration="8876000" />
-      <workItem from="1704179146835" duration="8236000" />
-    </task>
-    <task id="LOCAL-00007" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704121651127</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1704121651127</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704122216188</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1704122216188</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704122428294</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1704122428294</updated>
+      <workItem from="1704179146835" duration="8657000" />
     </task>
     <task id="LOCAL-00010" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -469,7 +448,31 @@
       <option name="project" value="LOCAL" />
       <updated>1704191042390</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704191320018</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1704191320018</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704191563002</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1704191563002</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704191580150</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1704191580150</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
