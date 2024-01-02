@@ -70,17 +70,18 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         """Initialize."""
         self.api = client
         self.platforms = []
-        self.devices = []
+        self.devices = EctoControlAPIDevices(None)
 
     async def update_devices(self):
         devices = await self.api.async_get_devices()
-        self.devices = devices.devices
+        self.devices = devices
 
     async def _async_update_data(self) -> dict[str, Any]:
         """Update data via library."""
         try:
             _LOGGER.debug("Going to refresh Coordinator Data")
-            return await self.api.async_get_data()
+            data = await self.api.async_get_data(self.devices)
+            return data
         except Exception as exception:
             raise UpdateFailed() from exception
 
