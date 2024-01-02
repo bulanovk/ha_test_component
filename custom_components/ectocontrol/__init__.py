@@ -2,6 +2,7 @@ import asyncio
 import logging
 from asyncio import Future
 from datetime import timedelta
+from typing import Mapping, Any
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import Config
@@ -41,7 +42,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     client = EctocontrolApiClient(public_token, session)
 
     coordinator = EctocontrolDataUpdateCoordinator(hass, client=client)
-    await coordinator.async_refresh()
+    await coordinator.async_config_entry_first_refresh()
 
     if not coordinator.last_update_success:
         _LOGGER.error("Failed to Perform Data update")
@@ -60,7 +61,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     return True
 
 
-class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
+class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     """Class to manage fetching data from the API."""
 
     def __init__(self, hass: HomeAssistant,
@@ -75,7 +76,7 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
         devices = await self.api.async_get_devices()
         self.devices = devices.devices
 
-    async def _async_update_data(self):
+    async def _async_update_data(self) -> dict[str, Any]:
         """Update data via library."""
         try:
             _LOGGER.debug("Going to refresh Coordinator Data")

@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,15 +74,7 @@
       <updated>1704118514596</updated>
       <workItem from="1704118516601" duration="8807000" />
       <workItem from="1704127378067" duration="8876000" />
-      <workItem from="1704179146835" duration="5139000" />
-    </task>
-    <task id="LOCAL-00001" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704118661696</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1704118661696</updated>
+      <workItem from="1704179146835" duration="5461000" />
     </task>
     <task id="LOCAL-00002" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -470,7 +460,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704185856040</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704186278139</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1704186278139</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
