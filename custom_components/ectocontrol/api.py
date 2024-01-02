@@ -35,16 +35,16 @@ class EctocontrolApiClient:
             _LOGGER.error("Something really wrong happened! - %s", exception)
             return EctoControlAPIDevices(None)
 
-    async def async_get_data(self, data: EctoControlAPIDevices) -> EctoControlAPIDevices:
+    async def async_get_data(self, data: EctoControlAPIDevices) -> dict:
         if data.devices is []:
             _LOGGER.debug("No Devices to Update")
-            return EctoControlAPIDevices(None)
+            return {data: EctoControlAPIDevices(None)}
         url = f"{BASEURL}/info"
         ids = []
         for device in data.devices:
             ids.append(device.id)
         res = await self.api_wrapper("patch", url, data={"ids": ids}, headers=HEADERS)
-        return EctoControlAPIDevices(**res)
+        return {data: EctoControlAPIDevices(**res)}
 
     async def api_wrapper(
             self, method: str, url: str, data: dict = {}, headers: dict = {}
