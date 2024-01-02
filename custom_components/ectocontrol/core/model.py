@@ -20,5 +20,6 @@ class EctoControlAPIDevices:
 
     def __init__(self, devices):
         self.devices = []
-        for device in devices:
-            self.devices.append(EctoControlAPIDevice(**device))
+        if devices is not None:
+            for device in devices:
+                self.devices.append(EctoControlAPIDevice(**device))
