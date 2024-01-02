@@ -13,7 +13,7 @@ TIMEOUT = 10
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 HEADERS = {"Content-type": "application/json; charset=UTF-8"}
-BASEURL = "https://my.ectostroy.ru/public_api/v0/"
+BASEURL = "https://my.ectostroy.ru/public_api/v0"
 
 
 class EctocontrolApiClient:
@@ -25,7 +25,7 @@ class EctocontrolApiClient:
         self._session = session
 
     async def async_get_devices(self) -> EctoControlAPIDevices:
-        url = f"{BASEURL}devices"
+        url = f"{BASEURL}/devices"
         try:
             _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}")
             maps = await self.api_wrapper("get", url, headers=HEADERS)
@@ -36,7 +36,7 @@ class EctocontrolApiClient:
             return EctoControlAPIDevices(None)
 
     async def async_get_data(self, data: EctoControlAPIDevices) -> dict:
-        _LOGGER.debug("API get Data Start")
+        _LOGGER.debug(f"API get Data Start {data.devices}")
         if not data.devices:
             _LOGGER.debug("No Devices to Update")
             return {"data": EctoControlAPIDevices(None)}
