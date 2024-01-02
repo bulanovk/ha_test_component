@@ -44,10 +44,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     await coordinator.async_refresh()
 
     if not coordinator.last_update_success:
+        _LOGGER.error("Failed to Perform Data update")
         raise ConfigEntryNotReady
 
     hass.data[DOMAIN][entry.entry_id] = coordinator
-
+    _LOGGER.debug("INIT PLATFORMS")
     for platform in PLATFORMS:
         if entry.options.get(platform, True):
             coordinator.platforms.append(platform)
@@ -77,6 +78,7 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self):
         """Update data via library."""
         try:
+            _LOGGER.debug("Going to refresh Coordinator Data")
             return await self.api.async_get_data()
         except Exception as exception:
             raise UpdateFailed() from exception

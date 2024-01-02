@@ -36,6 +36,7 @@ class EctocontrolApiClient:
             return EctoControlAPIDevices(None)
 
     async def async_get_data(self, data: EctoControlAPIDevices) -> dict:
+        _LOGGER.debug("API get Data Start")
         if data.devices is []:
             _LOGGER.debug("No Devices to Update")
             return {data: EctoControlAPIDevices(None)}
