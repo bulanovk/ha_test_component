@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from asyncio import Future
 from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
@@ -71,8 +72,9 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
         async def asyncfunc() -> EctoControlAPIDevices:
             return await client.async_get_devices()
 
-        self.devices = asyncio.run(asyncfunc()).devices
-
+        r: Future[EctoControlAPIDevices] = hass.async_add_job(asyncfunc)
+        d: EctoControlAPIDevices = r.result()
+        self.devices = d.devices
 
     async def _async_update_data(self):
         """Update data via library."""
