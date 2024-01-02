@@ -1,4 +1,6 @@
 """Sensor platform for Ectocontrol."""
+import logging
+
 from . import EctocontrolDataUpdateCoordinator
 from .const import DEFAULT_NAME
 from .const import DOMAIN
@@ -7,11 +9,14 @@ from .const import SENSOR
 from .core.model import EctoControlAPIDevices, EctoControlAPIDevice
 from .entity import EctocontrolEntity
 
+_LOGGER: logging.Logger = logging.getLogger(__package__)
 
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator: EctocontrolDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
+    _LOGGER.debug("Going to read device List")
     devices: EctoControlAPIDevices = await coordinator.api.async_get_devices()
+    _LOGGER.debug(f"Got Device List {devices}")
     for device in devices.devices:
         async_add_devices([EctocontrolSensor(coordinator, entry, device)])
 

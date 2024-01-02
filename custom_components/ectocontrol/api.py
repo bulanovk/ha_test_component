@@ -27,14 +27,18 @@ class EctocontrolApiClient:
     async def async_get_devices(self) -> EctoControlAPIDevices:
         url = f"{BASEURL}devices"
         try:
+            _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}")
             maps = await self.api_wrapper("get", url, headers=HEADERS)
-            _LOGGER.warn("Something really wrong happened! - %s", exception)
+            _LOGGER.debug(f"GOT REST Result {maps}")
             return EctoControlAPIDevices(**maps)
         except Exception as exception:  # pylint: disable=broad-except
             _LOGGER.error("Something really wrong happened! - %s", exception)
             return EctoControlAPIDevices(None)
 
     async def async_get_data(self, data: EctoControlAPIDevices) -> EctoControlAPIDevices:
+        if data.devices is []:
+            _LOGGER.debug("No Devices to Update")
+            return EctoControlAPIDevices(None)
         url = f"{BASEURL}/info"
         ids = []
         for device in data.devices:
