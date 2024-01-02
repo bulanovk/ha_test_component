@@ -39,13 +39,13 @@ class EctocontrolApiClient:
         _LOGGER.debug("API get Data Start")
         if data.devices is []:
             _LOGGER.debug("No Devices to Update")
-            return {data: EctoControlAPIDevices(None)}
+            return {"data": EctoControlAPIDevices(None)}
         url = f"{BASEURL}/info"
         ids = []
         for device in data.devices:
             ids.append(device.id)
         res = await self.api_wrapper("patch", url, data={"ids": ids}, headers=HEADERS)
-        return {data: EctoControlAPIDevices(**res)}
+        return {"data": EctoControlAPIDevices(**res)}
 
     async def api_wrapper(
             self, method: str, url: str, data: dict = {}, headers: dict = {}

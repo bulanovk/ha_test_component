@@ -83,6 +83,12 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator):
         except Exception as exception:
             raise UpdateFailed() from exception
 
+    async def async_config_entry_first_refresh(self) -> None:
+        """Refresh data for the first time when a config entry is setup."""
+        _LOGGER.debug("Start First refresh")
+        self.data = {"data": EctoControlAPIDevices(None)}
+        await super().async_config_entry_first_refresh()
+
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Handle removal of an entry."""
