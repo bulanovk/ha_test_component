@@ -11,6 +11,7 @@ from .entity import EctocontrolEntity
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
+
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator: EctocontrolDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
@@ -18,21 +19,15 @@ async def async_setup_entry(hass, entry, async_add_devices):
     devices: EctoControlAPIDevices = await coordinator.api.async_get_devices()
     _LOGGER.debug(f"Got Device List {devices}")
     for device in devices.devices:
-        async_add_devices([EctocontrolSensor(coordinator, entry, device)])
+        if device.type == "Датчик температуры":
+            async_add_devices([EctocontrolSensor(coordinator, entry, device)])
 
 
 class EctocontrolSensor(EctocontrolEntity):
     """ectocontrol Sensor class."""
-    device: EctoControlAPIDevice
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
-        super().__init__(coordinator, config_entry)
-        self.device = device
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return self.device.name
+        super().__init__(coordinator, config_entry, device)
 
     @property
     def state(self):
