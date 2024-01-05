@@ -20,6 +20,11 @@ class EctocontrolEntity(CoordinatorEntity):
         self._attr_name = self.device.name
 
     @property
+    def unique_id(self) -> str | None:
+
+        return self.config_entry.unique_id
+
+    @property
     def device_info(self):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
