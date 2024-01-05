@@ -15,8 +15,6 @@ class EctocontrolEntity(CoordinatorEntity):
         super().__init__(coordinator)
         self.config_entry = config_entry
         self.device = device
-        self.entity_id = f"ec_{self.device.system_object_id}_{self.device.id}"
-        self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}"
         self._attr_name = self.device.name
 
     @property

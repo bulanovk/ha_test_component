@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/core/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/core/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/config_flow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,23 +76,7 @@
       <workItem from="1704118516601" duration="8807000" />
       <workItem from="1704127378067" duration="8876000" />
       <workItem from="1704179146835" duration="9039000" />
-      <workItem from="1704445198913" duration="2982000" />
-    </task>
-    <task id="LOCAL-00015" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704124421906</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1704124421906</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704124751324</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1704124751324</updated>
+      <workItem from="1704445198913" duration="3370000" />
     </task>
     <task id="LOCAL-00017" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -472,7 +454,23 @@
       <option name="project" value="LOCAL" />
       <updated>1704447539144</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704448241810</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1704448241810</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704448379884</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1704448379884</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
