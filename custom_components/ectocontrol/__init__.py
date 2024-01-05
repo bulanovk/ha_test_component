@@ -88,6 +88,7 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def async_config_entry_first_refresh(self) -> None:
         """Refresh data for the first time when a config entry is setup."""
         _LOGGER.debug("Start First refresh")
+        self.devices = await self.api.async_get_devices()
         self.data = await self.async_refresh()
         await super().async_config_entry_first_refresh()
 

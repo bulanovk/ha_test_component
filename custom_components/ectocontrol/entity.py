@@ -15,16 +15,9 @@ class EctocontrolEntity(CoordinatorEntity):
         super().__init__(coordinator)
         self.config_entry = config_entry
         self.device = device
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return self.device.name
-
-    @property
-    def unique_id(self):
-        """Return a unique ID to use for this entity."""
-        return f"ec_{self.device.system_object_id}_{self.device.id}"
+        self.entity_id = f"ec_{self.device.system_object_id}_{self.device.id}"
+        self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}"
+        self._attr_name = self.device.name
 
     @property
     def device_info(self):

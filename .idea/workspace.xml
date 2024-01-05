@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/sensor.py" afterDir="false" />
     </list>
@@ -76,15 +78,7 @@
       <workItem from="1704118516601" duration="8807000" />
       <workItem from="1704127378067" duration="8876000" />
       <workItem from="1704179146835" duration="9039000" />
-      <workItem from="1704445198913" duration="806000" />
-    </task>
-    <task id="LOCAL-00013" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704123537114</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1704123537114</updated>
+      <workItem from="1704445198913" duration="2331000" />
     </task>
     <task id="LOCAL-00014" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -470,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704445624843</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704446266320</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1704446266320</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
