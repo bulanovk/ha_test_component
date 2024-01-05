@@ -79,7 +79,7 @@ class EctocontrolDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
     async def _async_update_data(self) -> dict[str, Any]:
         """Update data via library."""
         try:
-            _LOGGER.debug("Going to refresh Coordinator Data")
+            _LOGGER.debug(f"Going to refresh Coordinator Data. Devices{self.devices}")
             data = await self.api.async_get_data(self.devices)
             return data
         except Exception as exception:
