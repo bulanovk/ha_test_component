@@ -64,7 +64,7 @@ You can use the `pre-commit` settings implemented in this repository to have
 linting tool checking your contributions (see deicated section below).
 
 {% if cookiecutter.test_suite == "yes" -%}
-You should also verify that existing [tests](./tests) are still working
+You should also verify that existing [tests](./int) are still working
 and you are encouraged to add new ones.
 You can run the tests using the following commands from the root folder:
 
@@ -74,8 +74,8 @@ python3 -m venv venv
 source venv/bin/activate
 # Install requirements
 pip install -r requirements_test.txt
-# Run tests and get a summary of successes/failures and code coverage
-pytest --durations=10 --cov-report term-missing --cov=custom_components.ectocontrol tests
+# Run int and get a summary of successes/failures and code coverage
+pytest --durations=10 --cov-report term-missing --cov=custom_components.ectocontrol int
 ```
 
 If any of the tests fail, make the necessary changes to the tests as part of

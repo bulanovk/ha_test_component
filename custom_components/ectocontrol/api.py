@@ -1,5 +1,7 @@
 """Sample API Client."""
+import ast
 import asyncio
+import json
 import logging
 import socket
 
@@ -47,7 +49,10 @@ class EctocontrolApiClient:
         body = {"ids": ids}
         _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}, body={body}")
         res = await self.api_wrapper("post", url, data=body, headers=HEADERS)
-        return {"data": data}
+        rez: dict[str, str] = {}
+        for r in res.get("devices_info"):
+            rez[r.get("id")] = r.get("value")
+        return rez
 
     async def api_wrapper(
             self, method: str, url: str, data: dict = {}, headers: dict = {}
@@ -66,7 +71,8 @@ class EctocontrolApiClient:
                     await self._session.patch(url, headers=headers, json=data)
 
                 elif method == "post":
-                    await self._session.post(url, headers=headers, json=data)
+                    response = await self._session.post(url, headers=headers, json=data)
+                    return await response.json()
 
         except asyncio.TimeoutError as exception:
             _LOGGER.error(

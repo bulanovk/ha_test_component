@@ -32,7 +32,7 @@ class EctocontrolSensor(EctocontrolEntity):
     @property
     def state(self):
         """Return the state of the sensor."""
-        return self.coordinator.data.get("body")
+        return self.coordinator.data.get(self.device.id)
 
     @property
     def icon(self):
