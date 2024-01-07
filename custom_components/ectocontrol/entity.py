@@ -1,4 +1,6 @@
 """EctocontrolEntity class"""
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
+from homeassistant.const import UnitOfTemperature
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import ATTRIBUTION
@@ -16,9 +18,14 @@ class EctocontrolEntity(CoordinatorEntity):
         self.config_entry = config_entry
         self.device = device
         self._attr_name = self.device.name
-#        self.entity_id = f"sensor.ec_{self.device.system_object_id}_{self.device.id}"
         self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}"
+        if device.deviceClass == SensorDeviceClass.TEMPERATURE:
+            self._attr_unique_id = f"{self._attr_unique_id}_temperature"
+            _attr_device_class = SensorDeviceClass.TEMPERATURE
+            _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+            _attr_state_class = SensorStateClass.MEASUREMENT
 
+        self.entity_id = f"sensor.{self._attr_unique_id}"
 
     @property
     def device_info(self):

@@ -1,12 +1,15 @@
 import numbers
 from typing import List
 
+from homeassistant.components.sensor import SensorDeviceClass
+
 
 class EctoControlAPIDevice:
     id: numbers
     system_object_id: str
     name: str
     type: str
+    deviceClass: SensorDeviceClass
 
     def __init__(self, id, system_object_id, name, type):
         self.id = id
@@ -14,6 +17,8 @@ class EctoControlAPIDevice:
         if name is not None:
             self.name = name[1:-1]
         self.type = type
+        if type == "Датчик температуры":
+            self.deviceClass = SensorDeviceClass.TEMPERATURE
 
     def __str__(self):
         return f'{self.id}-{self.name}'
