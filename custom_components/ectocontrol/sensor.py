@@ -1,8 +1,11 @@
 """Sensor platform for Ectocontrol."""
 import logging
+from datetime import date, datetime
+from decimal import Decimal
 
-from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass, SensorEntity
 from homeassistant.const import UnitOfTemperature
+from homeassistant.helpers.typing import StateType
 
 from . import EctocontrolDataUpdateCoordinator
 from .const import DOMAIN
@@ -24,15 +27,15 @@ async def async_setup_entry(hass, entry, async_add_devices):
     async_add_devices(devs)
 
 
-class EctocontrolSensor(EctocontrolEntity):
+class EctocontrolSensor(EctocontrolEntity, SensorEntity):
     """ectocontrol Sensor class."""
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
         super().__init__(coordinator, config_entry, device)
 
     @property
-    def state(self):
-        """Return the state of the sensor."""
+    def native_value(self) -> StateType | date | datetime | Decimal:
+        """Return the value reported by the sensor."""
         return self.coordinator.data.get(self.device.id)
 
     @property
@@ -42,8 +45,9 @@ class EctocontrolSensor(EctocontrolEntity):
 
 
 class TemperatureEctoControlSensor(EctocontrolSensor):
+
     _attr_device_class = SensorDeviceClass.TEMPERATURE
-    _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+    _attr_unit_of_measurement = UnitOfTemperature.CELSIUS
     _attr_state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
