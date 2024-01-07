@@ -26,8 +26,6 @@ class EctocontrolSensor(EctocontrolEntity):
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
         super().__init__(coordinator, config_entry, device)
-        self.entity_id = f"sensor.ec_{self.device.system_object_id}_{self.device.id}"
-        self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}"
 
     @property
     def state(self):
