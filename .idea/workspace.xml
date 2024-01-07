@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e26310a-79c5-4059-9b9c-d2ce418a3a60" name="Changes" comment="Fix Depends">
-      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/entity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_components/ectocontrol/api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,15 +151,7 @@
       <workItem from="1704127378067" duration="8876000" />
       <workItem from="1704179146835" duration="9039000" />
       <workItem from="1704445198913" duration="4975000" />
-      <workItem from="1704532372125" duration="6503000" />
-    </task>
-    <task id="LOCAL-00021" summary="Fix Depends">
-      <option name="closed" value="true" />
-      <created>1704126171224</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1704126171224</updated>
+      <workItem from="1704532372125" duration="6806000" />
     </task>
     <task id="LOCAL-00022" summary="Fix Depends">
       <option name="closed" value="true" />
@@ -545,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704634597826</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Fix Depends">
+      <option name="closed" value="true" />
+      <created>1704635492770</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1704635492770</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

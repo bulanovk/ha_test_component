@@ -1,7 +1,5 @@
 """Sample API Client."""
-import ast
 import asyncio
-import json
 import logging
 import socket
 
