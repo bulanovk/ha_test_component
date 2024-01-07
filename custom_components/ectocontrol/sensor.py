@@ -45,7 +45,6 @@ class EctocontrolSensor(EctocontrolEntity, SensorEntity):
 
 
 class TemperatureEctoControlSensor(EctocontrolSensor):
-
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_unit_of_measurement = UnitOfTemperature.CELSIUS
     _attr_state_class = SensorStateClass.MEASUREMENT
