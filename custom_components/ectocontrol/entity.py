@@ -19,10 +19,8 @@ class EctocontrolEntity(CoordinatorEntity):
         self.device = device
         self._attr_name = self.device.name
         self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}"
-
         if device.deviceClass == SensorDeviceClass.TEMPERATURE:
             self._attr_unique_id = f"{self._attr_unique_id}_temperature"
-
         self.entity_id = f"sensor.{self._attr_unique_id}"
 
     @property

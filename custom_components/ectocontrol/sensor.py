@@ -38,15 +38,10 @@ class EctocontrolSensor(EctocontrolEntity, SensorEntity):
         """Return the value reported by the sensor."""
         return self.coordinator.data.get(self.device.id)
 
-    @property
-    def icon(self):
-        """Return the icon of the sensor."""
-        return ICON
-
 
 class TemperatureEctoControlSensor(EctocontrolSensor):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
-    _attr_unit_of_measurement = UnitOfTemperature.CELSIUS
+    _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
     _attr_state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
