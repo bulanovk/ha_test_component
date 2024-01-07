@@ -1,4 +1,4 @@
-# {{ cookiecutter.friendly_name }}
+# Ectocontrol Interation
 
 [![GitHub Release][releases-shield]][releases]
 [![GitHub Activity][commits-shield]][commits]
@@ -9,7 +9,6 @@
 
 [![hacs][hacsbadge]][hacs]
 [![Project Maintenance][maintenance-shield]][user_profile]
-[![BuyMeCoffee][buymecoffeebadge]][buymecoffee]
 
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
@@ -93,4 +92,4 @@ Code template was mainly taken from [@Ludeeus](https://github.com/ludeeus)'s [in
 [pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}.svg?style=for-the-badge
 [releases]: https://github.com/{{cookiecutter.github_user}}/{{cookiecutter.project_name}}/releases
-[user_profile]: https://github.com/{{cookiecutter.github_user}}
+[user_profile]: https://github.com/bulanovk
