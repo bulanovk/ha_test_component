@@ -1,6 +1,9 @@
 """Sensor platform for Ectocontrol."""
 import logging
 
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
+from homeassistant.const import UnitOfTemperature
+
 from . import EctocontrolDataUpdateCoordinator
 from .const import DOMAIN
 from .const import ICON
@@ -17,7 +20,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     devs = []
     for device in coordinator.devices.devices:
         if device.type == "Датчик температуры":
-            devs.append(EctocontrolSensor(coordinator, entry, device))
+            devs.append(TemperatureEctoControlSensor(coordinator, entry, device))
     async_add_devices(devs)
 
 
@@ -37,7 +40,14 @@ class EctocontrolSensor(EctocontrolEntity):
         """Return the icon of the sensor."""
         return ICON
 
-    @property
-    def device_class(self):
-        """Return de device class of the sensor."""
-        return "ectocontrol__custom_device_class"
+
+class TemperatureEctoControlSensor(EctocontrolSensor):
+
+    _attr_device_class = SensorDeviceClass.TEMPERATURE
+    _attr_has_entity_name = True
+    _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
+        super().__init__(coordinator, config_entry, device)
+        self._attr_unique_id = f"ec_{self.device.system_object_id}_{self.device.id}_temperature"
