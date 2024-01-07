@@ -9,7 +9,6 @@ from homeassistant.helpers.typing import StateType
 
 from . import EctocontrolDataUpdateCoordinator
 from .const import DOMAIN
-from .const import ICON
 from .core.model import EctoControlAPIDevice
 from .entity import EctocontrolEntity
 
