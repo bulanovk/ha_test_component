@@ -35,7 +35,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     if hass.data.get(DOMAIN) is None:
         hass.data.setdefault(DOMAIN, {})
         _LOGGER.info(STARTUP_MESSAGE)
-    _LOGGER.debug(f"KOBU: Config {entry.data}")
     public_token = entry.data.get(CONF_PUBLIC_TOKEN)
 
     session = async_get_clientsession(hass)

@@ -28,4 +28,4 @@ class EctoControlAPIDevices:
                 self.devices.append(EctoControlAPIDevice(**device))
 
     def __str__(self):
-        return str(self.devices)
+        return f"{self.devices}"

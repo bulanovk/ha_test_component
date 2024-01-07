@@ -23,8 +23,8 @@ class EctocontrolEntity(CoordinatorEntity):
     @property
     def device_info(self):
         return {
-            "identifiers": {(DOMAIN, self.config_entry.unique_id)},
-            "name": NAME,
+            "identifiers": {(DOMAIN, self.device.system_object_id)},
+            "name": f"{NAME}-{self.device.system_object_id}",
             "model": VERSION,
             "manufacturer": "Ectostroy",
         }

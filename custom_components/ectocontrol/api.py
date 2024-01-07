@@ -29,7 +29,7 @@ class EctocontrolApiClient:
     async def async_get_devices(self) -> EctoControlAPIDevices:
         url = f"{BASEURL}/devices"
         try:
-            _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}")
+            _LOGGER.debug(f"Try to fetch URL={url}")
             maps = await self.api_wrapper("get", url, headers=HEADERS)
             _LOGGER.debug(f"GOT REST Result {maps}")
             return EctoControlAPIDevices(**maps)
@@ -47,7 +47,7 @@ class EctocontrolApiClient:
         for device in data.devices:
             ids.append(device.id)
         body = {"ids": ids}
-        _LOGGER.debug(f"Try to fetch URL={url}, HEADERS={HEADERS}, body={body}")
+        _LOGGER.debug(f"Try to fetch URL={url}, body={body}")
         res = await self.api_wrapper("post", url, data=body, headers=HEADERS)
         rez: dict[str, str] = {}
         for r in res.get("devices_info"):
