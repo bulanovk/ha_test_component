@@ -12,7 +12,7 @@ class EctoControlAPIDevice:
         self.id = id
         self.system_object_id = system_object_id
         if name is not None:
-            self.name = name[2:-2]
+            self.name = name[1:-1]
         self.type = type
 
     def __str__(self):
