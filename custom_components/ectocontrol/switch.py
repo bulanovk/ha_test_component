@@ -1,4 +1,6 @@
 """Switch platform for Ectocontrol."""
+from typing import Any
+
 from homeassistant.components.switch import SwitchEntity
 
 from .const import DEFAULT_NAME
@@ -12,7 +14,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
     if coordinator is None:
-        async_add_devices([EctocontrolBinarySwitch(coordinator, entry,None)])
+        async_add_devices([EctocontrolBinarySwitch(coordinator, entry, None)])
 
 
 class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disable=too-many-ancestors
@@ -42,3 +44,11 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
     def is_on(self):
         """Return true if the switch is on."""
         return self.coordinator.data.get("title", "") == "foo"
+
+    def turn_off(self, **kwargs: Any) -> None:
+        """Turn the entity off."""
+        raise NotImplementedError()
+
+    def turn_on(self, **kwargs: Any) -> None:
+        """Turn the entity on."""
+        raise NotImplementedError()
