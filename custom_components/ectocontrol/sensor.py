@@ -41,7 +41,6 @@ class EctocontrolSensor(EctocontrolEntity, SensorEntity):
 class TemperatureEctoControlSensor(EctocontrolSensor):
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
-    _attr_state_class = SensorStateClass.MEASUREMENT
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
         super().__init__(coordinator, config_entry, device)
