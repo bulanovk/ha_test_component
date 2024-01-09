@@ -1,2 +1,3 @@
 homeassistant
 async-timeout
+aiohttp
