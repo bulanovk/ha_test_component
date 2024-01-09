@@ -11,10 +11,11 @@ from .entity import EctocontrolEntity
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    # async_add_devices([EctocontrolBinarySwitch(coordinator, entry)])
+    if coordinator is None:
+        async_add_devices([EctocontrolBinarySwitch(coordinator, entry,None)])
 
 
-class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):
+class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disable=too-many-ancestors
     """ectocontrol switch class."""
 
     async def async_turn_on(self, **kwargs):  # pylint: disable=unused-argument

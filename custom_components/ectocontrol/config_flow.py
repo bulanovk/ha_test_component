@@ -7,7 +7,7 @@ import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.helpers import selector
 
-from custom_components.ectocontrol.const import *
+from custom_components.ectocontrol import DOMAIN, CONF_PUBLIC_TOKEN
 
 _LOGGER = logging.getLogger(__name__)
 
