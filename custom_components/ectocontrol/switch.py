@@ -1,7 +1,7 @@
 """Switch platform for Ectocontrol."""
 from typing import Any
 
-from homeassistant.components.switch import SwitchEntity
+from homeassistant.components.switch import SwitchEntity, _LOGGER
 
 from .const import DEFAULT_NAME
 from .const import DOMAIN
@@ -13,8 +13,12 @@ from .entity import EctocontrolEntity
 async def async_setup_entry(hass, entry, async_add_devices):
     """Setup sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
-    if coordinator is None:
-        async_add_devices([EctocontrolBinarySwitch(coordinator, entry, None)])
+    _LOGGER.debug("Got Device List  %s", coordinator.devices)
+    devs = []
+    for device in coordinator.devices.devices:
+        if device.type == "Реле электромагнитное":
+            devs.append(EctocontrolBinarySwitch(coordinator, entry, device))
+    async_add_devices(devs)
 
 
 class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disable=too-many-ancestors
