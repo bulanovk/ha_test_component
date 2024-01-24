@@ -53,7 +53,7 @@ class EctocontrolApiClient:
         res = await self.api_wrapper("post", url, data=body, headers=HEADERS)
         rez: dict[str, str] = {}
         for r in res.get("devices_info"):
-            if r.get("type") == "Реле электронное":
+            if r.get("type") == "Реле электромагнитное":
                 rez[r.get("id")] = r.get("state")
             else:
                 rez[r.get("id")] = r.get("value")
