@@ -57,6 +57,7 @@ class EctocontrolApiClient:
                 rez[r.get("id")] = r.get("state")
             else:
                 rez[r.get("id")] = r.get("value")
+            _LOGGER.info("KOBU:DATA - %s", rez[r.get("id")])
         return rez
 
     async def api_wrapper(

@@ -3,10 +3,7 @@ from typing import Any
 
 from homeassistant.components.switch import SwitchEntity, _LOGGER
 
-from .const import DEFAULT_NAME
 from .const import DOMAIN
-from .const import ICON
-from .const import SWITCH
 from .entity import EctocontrolEntity
 
 
@@ -37,6 +34,7 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
     @property
     def is_on(self):
         """Return true if the switch is on."""
+        _LOGGER.info("KOBU:SW:Stata - %s", self.coordinator.data.get(self.device.id))
         return self.coordinator.data.get(self.device.id) == "Вкл"
 
     def turn_off(self, **kwargs: Any) -> None:
