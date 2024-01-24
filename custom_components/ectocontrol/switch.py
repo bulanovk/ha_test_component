@@ -37,7 +37,7 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
     @property
     def is_on(self):
         """Return true if the switch is on."""
-        return self.coordinator.data.get("title", "") == "foo"
+        return self.coordinator.data.get(self.device.id) == "Вкл"
 
     def turn_off(self, **kwargs: Any) -> None:
         """Turn the entity off."""
