@@ -33,17 +33,6 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
         """Turn off the switch."""
         await self.coordinator.api.async_set_title("foo")
         await self.coordinator.async_request_refresh()
-
-    @property
-    def name(self):
-        """Return the name of the switch."""
-        return f"{DEFAULT_NAME}_{SWITCH}"
-
-    @property
-    def icon(self):
-        """Return the icon of this switch."""
-        return ICON
-
     @property
     def is_on(self):
         """Return true if the switch is on."""
