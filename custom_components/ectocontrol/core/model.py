@@ -20,7 +20,8 @@ class EctoControlAPIDevice:
         return f'{self.id}-{self.name}'
 
     def __post_init__(self):
-        self.name = re.sub('"(.*)"$', '\\1', self.name)
+        if self.name is not None:
+            self.name = re.sub('"(.*)"$', '\\1', self.name)
 
 
 @dataclass
