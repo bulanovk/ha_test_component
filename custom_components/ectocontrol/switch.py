@@ -1,4 +1,5 @@
 """Switch platform for Ectocontrol."""
+import asyncio
 from typing import Any
 
 from homeassistant.components.switch import SwitchEntity, _LOGGER
@@ -33,6 +34,7 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
         """Turn off the switch."""
         self.device.state = SWITCH_TURN_OFF_STATE
         await self.coordinator.api.async_set_state(self.device)
+        await asyncio.sleep(15)
         # await self.coordinator.async_request_refresh()
 
     @property
