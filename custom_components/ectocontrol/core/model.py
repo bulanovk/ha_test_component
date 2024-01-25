@@ -11,8 +11,8 @@ class EctoControlAPIDevice:
     id: numbers
     system_object_id: str
     type: str
-    state: str
-    value: str
+    state: str = None
+    value: str = None
     name: str = "\"\""
 
     def __str__(self):
