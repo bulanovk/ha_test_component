@@ -3,7 +3,7 @@ from typing import Any
 
 from homeassistant.components.switch import SwitchEntity, _LOGGER
 
-from .const import DOMAIN
+from .const import DOMAIN, SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
 from .entity import EctocontrolEntity
 
 
@@ -23,19 +23,21 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
 
     async def async_turn_on(self, **kwargs):  # pylint: disable=unused-argument
         """Turn on the switch."""
-        await self.coordinator.api.async_set_title("bar")
+        self.device.state = SWITCH_TURN_ON_STATE
+        await self.coordinator.api.async_set_state(self.device)
         await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs):  # pylint: disable=unused-argument
         """Turn off the switch."""
-        await self.coordinator.api.async_set_title("foo")
+        self.device.state = SWITCH_TURN_OFF_STATE
+        await self.coordinator.api.async_set_state(self.device)
         await self.coordinator.async_request_refresh()
 
     @property
     def is_on(self):
         """Return true if the switch is on."""
         _LOGGER.info("KOBU:SW:Stata - %s", self.coordinator.data.get(self.device.id))
-        return self.coordinator.data.get(self.device.id) == "Вкл"
+        return self.coordinator.data.get(self.device.id) == SWITCH_TURN_ON_STATE
 
     def turn_off(self, **kwargs: Any) -> None:
         """Turn the entity off."""

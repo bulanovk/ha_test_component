@@ -12,13 +12,17 @@ class EctoControlAPIDevice:
     system_object_id: str
     name: str
     type: str
+    state: str
+    value: str
 
-    def __init__(self, id, system_object_id, name, type): # pylint: disable=redefined-builtin
+    def __init__(self, id, system_object_id, name, type, value, state):  # pylint: disable=redefined-builtin
         self.id = id
         self.system_object_id = system_object_id
         if name is not None:
             self.name = name[1:-1]
         self.type = type
+        self.value = value
+        self.state = state
 
     def __str__(self):
         return f'{self.id}-{self.name}'
