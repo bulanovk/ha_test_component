@@ -64,7 +64,7 @@ class EctocontrolApiClient:
     async def async_set_state(self, data: EctoControlAPIDevice):
         """ Set State on Device"""
         _LOGGER.info("KOBU: set state")
-        url = f"{BASEURL}/info"
+        url = f"{BASEURL}/set_state"
         body = {
             "on": [
                 data.id if data.state == SWITCH_TURN_ON_STATE else 0
