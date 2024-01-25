@@ -3,6 +3,7 @@ from typing import Optional, Any
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from . import EctocontrolDataUpdateCoordinator
 from .const import ATTRIBUTION
 from .const import DOMAIN
 from .const import NAME
@@ -15,7 +16,7 @@ class EctocontrolEntity(CoordinatorEntity):
     device: EctoControlAPIDevice
     _attr_id_postfix: Optional[str] = None
 
-    def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
+    def __init__(self, coordinator: EctocontrolDataUpdateCoordinator, config_entry, device: EctoControlAPIDevice):
         super().__init__(coordinator)
         self.config_entry = config_entry
         self.device = device

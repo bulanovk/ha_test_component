@@ -19,7 +19,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator: EctocontrolDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
     _LOGGER.debug("Got Device List  %s", coordinator.devices)
     devs = []
-    for device in coordinator.devices.devices:
+    for key, device in coordinator.devices.devices.items():
         if device.type == "Датчик температуры":
             devs.append(TemperatureEctoControlSensor(coordinator, entry, device))
     async_add_devices(devs)
@@ -31,7 +31,8 @@ class EctocontrolSensor(EctocontrolEntity, SensorEntity):
     @property
     def native_value(self) -> StateType | date | datetime | Decimal:
         """Return the value reported by the sensor."""
-        return self.coordinator.data.get(self.device.id)
+        coordinator: EctocontrolDataUpdateCoordinator = self.coordinator
+        return coordinator.devices.devices.get(self.device.id).value
 
 
 class TemperatureEctoControlSensor(EctocontrolSensor):  # pylint: disable=too-many-ancestors

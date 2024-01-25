@@ -13,7 +13,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator = hass.data[DOMAIN][entry.entry_id]
     _LOGGER.debug("Got Device List  %s", coordinator.devices)
     devs = []
-    for device in coordinator.devices.devices:
+    for key, device in coordinator.devices.devices.items():
         if device.type == "Реле электромагнитное":
             devs.append(EctocontrolBinarySwitch(coordinator, entry, device))
     async_add_devices(devs)
@@ -37,7 +37,7 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
     @property
     def is_on(self):
         """Return true if the switch is on."""
-        return self.coordinator.data.get(self.device.id) == SWITCH_TURN_ON_STATE
+        return self.coordinator.de.get(self.device.id) == SWITCH_TURN_ON_STATE
 
     def turn_off(self, **kwargs: Any) -> None:
         """Turn the entity off."""
