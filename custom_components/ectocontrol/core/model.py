@@ -2,6 +2,7 @@
 import numbers
 from dataclasses import dataclass
 from typing import List
+import re
 
 
 @dataclass
@@ -13,10 +14,13 @@ class EctoControlAPIDevice:
     type: str
     state: str = None
     value: str = None
-    name: str = "\"\""
+    name: str = ""
 
     def __str__(self):
         return f'{self.id}-{self.name}'
+
+    def __post_init__(self):
+        self.name = re.sub('"(.*)"$', '\\1', self.name)
 
 
 @dataclass

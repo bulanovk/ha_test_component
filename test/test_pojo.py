@@ -15,9 +15,28 @@ class MyTestCase(unittest.TestCase):
             "name": "xx",
             "type": "xx"
         }
-        device: EctoControlAPIDevice = EctoControlAPIDevice(*data)
-        self.assertEqual(device.id, 1)
+        device: EctoControlAPIDevice = EctoControlAPIDevice(**data)
+        self.assertEqual(1, device.id)
 
+    def test_device_name(self):
+        """ Test Device Pojo post construction name trim"""
+        data = {
+            "id": 1,
+            "system_object_id": 1,
+            "name": "xx",
+            "type": "xx"
+        }
+        device: EctoControlAPIDevice = EctoControlAPIDevice(**data)
+        self.assertEqual("xx", device.name)
+        """ Test Device Pojo construction from Json dict"""
+        data = {
+            "id": 1,
+            "system_object_id": 1,
+            "name": "\"xx\"",
+            "type": "xx"
+        }
+        device: EctoControlAPIDevice = EctoControlAPIDevice(**data)
+        self.assertEqual("xx", device.name)
 
 if __name__ == '__main__':
     unittest.main()
