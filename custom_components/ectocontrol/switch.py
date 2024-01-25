@@ -26,18 +26,17 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
         """Turn on the switch."""
         self.device.state = SWITCH_TURN_ON_STATE
         await self.coordinator.api.async_set_state(self.device)
-        await self.coordinator.async_request_refresh()
+        # await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs):  # pylint: disable=unused-argument
         """Turn off the switch."""
         self.device.state = SWITCH_TURN_OFF_STATE
         await self.coordinator.api.async_set_state(self.device)
-        await self.coordinator.async_request_refresh()
+        # await self.coordinator.async_request_refresh()
 
     @property
     def is_on(self):
         """Return true if the switch is on."""
-        _LOGGER.info("KOBU:SW:Stata - %s", self.coordinator.data.get(self.device.id))
         return self.coordinator.data.get(self.device.id) == SWITCH_TURN_ON_STATE
 
     def turn_off(self, **kwargs: Any) -> None:
