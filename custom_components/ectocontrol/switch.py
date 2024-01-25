@@ -35,7 +35,7 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
         self.device.state = SWITCH_TURN_OFF_STATE
         await self.coordinator.api.async_set_state(self.device)
         await asyncio.sleep(15) #sleep 15 second while state changes on controller
-        # await self.coordinator.async_request_refresh()
+        await self.coordinator.async_request_refresh()
 
     @property
     def is_on(self):
