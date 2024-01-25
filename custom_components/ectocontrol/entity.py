@@ -3,6 +3,7 @@ from typing import Optional, Any
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from . import EctocontrolDataUpdateCoordinator
 from .const import ATTRIBUTION
 from .const import DOMAIN
 from .const import NAME
@@ -14,6 +15,7 @@ class EctocontrolEntity(CoordinatorEntity):
     """ Ectocontrol entity base class"""
     device: EctoControlAPIDevice
     _attr_id_postfix: Optional[str] = None
+    coordinator: EctocontrolDataUpdateCoordinator
 
     def __init__(self, coordinator, config_entry, device: EctoControlAPIDevice):
         super().__init__(coordinator)
@@ -28,7 +30,7 @@ class EctocontrolEntity(CoordinatorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
         """Return the state attributes of the device."""
-        return {"kobuAttr": 1}
+        return {"connection": self.coordinator.devices.devices.get(self.device.id).connection}
 
     @property
     def device_info(self):
