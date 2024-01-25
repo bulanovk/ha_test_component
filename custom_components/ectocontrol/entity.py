@@ -1,5 +1,5 @@
 """EctocontrolEntity class"""
-from typing import Optional
+from typing import Optional, Any
 
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -24,7 +24,11 @@ class EctocontrolEntity(CoordinatorEntity):
         if self._attr_id_postfix is not None:
             self._attr_unique_id = f"{self._attr_unique_id}_{self._attr_id_postfix}"
         self.entity_id = f"sensor.{self._attr_unique_id}"
-        self._attr_extra_state_attributes["kobuAttr"] = "1"
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Return the state attributes of the device."""
+        return {"kobuAttr": 1}
 
     @property
     def device_info(self):
