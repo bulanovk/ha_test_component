@@ -47,7 +47,7 @@ class EctocontrolApiClient:
             return {"data": EctoControlAPIDevices(None)}
         url = f"{BASEURL}/info"
         ids = []
-        for key, device in data.devices:
+        for key, device in data.devices.items():
             ids.append(device.id)
         body = {"ids": ids}
         _LOGGER.debug("Try to fetch URL=%s, body=%s", url, body)
