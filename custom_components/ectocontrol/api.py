@@ -6,7 +6,7 @@ import socket
 import aiohttp
 import async_timeout
 
-from custom_components.ectocontrol import SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
+from custom_components.ectocontrol.core.const import SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
 from custom_components.ectocontrol.core.model import EctoControlAPIDevices, EctoControlAPIDevice
 
 TIMEOUT = 10
@@ -62,6 +62,7 @@ class EctocontrolApiClient:
         return rez
 
     async def async_set_state(self, data: EctoControlAPIDevice):
+        """ Set State on Device"""
         _LOGGER.info("KOBU: set state")
         url = f"{BASEURL}/info"
         body = {
@@ -72,7 +73,7 @@ class EctocontrolApiClient:
                 data.id if data.state == SWITCH_TURN_OFF_STATE else 0
             ]
         }
-        res = await self.api_wrapper("post", url, data=body, headers=HEADERS)
+        await self.api_wrapper("post", url, data=body, headers=HEADERS)
 
     async def api_wrapper(
             self, method: str, url: str, data: dict, headers: dict

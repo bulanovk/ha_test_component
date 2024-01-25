@@ -34,5 +34,3 @@ If you have any issues with this you need to open an issue here:
 """
 
 CONF_PUBLIC_TOKEN = "public_token"
-SWITCH_TURN_ON_STATE = "Вкл"
-SWITCH_TURN_OFF_STATE = "Выкл"

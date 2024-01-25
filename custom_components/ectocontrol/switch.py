@@ -3,7 +3,8 @@ from typing import Any
 
 from homeassistant.components.switch import SwitchEntity, _LOGGER
 
-from .const import DOMAIN, SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
+from .core.const import SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
+from .const import DOMAIN
 from .entity import EctocontrolEntity
 
 
