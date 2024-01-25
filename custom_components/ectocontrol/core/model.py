@@ -1,6 +1,6 @@
 """" API Pojo """
 import numbers
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import List
 
 
@@ -11,9 +11,9 @@ class EctoControlAPIDevice:
     id: numbers
     system_object_id: str
     type: str
+    state: str = None
+    value: str = None
     name: str = "\"\""
-    state: str = field(default=None)
-    value: str = field(default=None)
 
     def __str__(self):
         return f'{self.id}-{self.name}'
