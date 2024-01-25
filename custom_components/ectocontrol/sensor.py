@@ -19,7 +19,7 @@ async def async_setup_entry(hass, entry, async_add_devices):
     coordinator: EctocontrolDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
     _LOGGER.debug("Got Device List  %s", coordinator.devices)
     devs = []
-    for key, device in coordinator.devices.devices.items():
+    for _, device in coordinator.devices.devices.items():
         if device.type == "Датчик температуры":
             devs.append(TemperatureEctoControlSensor(coordinator, entry, device))
     async_add_devices(devs)

@@ -1,20 +1,21 @@
 """" API Pojo """
 import numbers
-from dataclasses import dataclass
-from typing import List, Any
 import re
+from dataclasses import dataclass, field
+from typing import Any
 
 
 @dataclass
 class EctoControlAPIDevice:
+    # pylint: disable=too-many-instance-attributes
     """Ectocontrol devices Rest API Pojo"""
 
     id: numbers
     system_object_id: str
     type: str
+    name: str
     state: str = None
     value: str = None
-    name: str = ""
     signal_level: str = 0
     system_firmware_version: str = None
     connection: bool = True
@@ -27,8 +28,9 @@ class EctoControlAPIDevice:
             self.name = re.sub('"(.*)"$', '\\1', self.name)
 
     def update(self, data: dict[str, Any]):
+        """ Update Pojo by Map """
         for key, value in data.items():
-            self.__setattr__(key, value)
+            setattr(self, key, value)
         if self.name is not None:
             self.name = re.sub('"(.*)"$', '\\1', self.name)
 
