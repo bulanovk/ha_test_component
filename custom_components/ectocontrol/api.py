@@ -73,6 +73,7 @@ class EctocontrolApiClient:
                 data.id if data.state == SWITCH_TURN_OFF_STATE else 0
             ]
         }
+        _LOGGER.info("KOBU: request=%s", body)
         await self.api_wrapper("post", url, data=body, headers=HEADERS)
 
     async def api_wrapper(
