@@ -4,9 +4,8 @@ from typing import Any
 
 from homeassistant.components.switch import SwitchEntity, _LOGGER
 
-from . import EctocontrolDataUpdateCoordinator
-from .core.const import SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
 from .const import DOMAIN
+from .core.const import SWITCH_TURN_ON_STATE, SWITCH_TURN_OFF_STATE
 from .entity import EctocontrolEntity
 
 
@@ -28,20 +27,22 @@ class EctocontrolBinarySwitch(EctocontrolEntity, SwitchEntity):  # pylint: disab
         """Turn on the switch."""
         self.device.state = SWITCH_TURN_ON_STATE
         await self.coordinator.api.async_set_state(self.device)
-        # await self.coordinator.async_request_refresh()
+        self.coordinator.devices.devices.get(self.device.id).state = SWITCH_TURN_ON_STATE
+        await asyncio.sleep(15)  # sleep 15 second while state changes on controller
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs):  # pylint: disable=unused-argument
         """Turn off the switch."""
         self.device.state = SWITCH_TURN_OFF_STATE
         await self.coordinator.api.async_set_state(self.device)
-        await asyncio.sleep(15) #sleep 15 second while state changes on controller
+        self.coordinator.devices.devices.get(self.device.id).state = SWITCH_TURN_OFF_STATE
+        await asyncio.sleep(15)  # sleep 15 second while state changes on controller
         await self.coordinator.async_request_refresh()
 
     @property
     def is_on(self):
         """Return true if the switch is on."""
-        coordinator: EctocontrolDataUpdateCoordinator = self.coordinator
-        return coordinator.devices.devices.get(self.device.id).state == SWITCH_TURN_ON_STATE
+        return self.coordinator.devices.devices.get(self.device.id).state == SWITCH_TURN_ON_STATE
 
     def turn_off(self, **kwargs: Any) -> None:
         """Turn the entity off."""
