@@ -30,7 +30,11 @@ class EctocontrolEntity(CoordinatorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
         """Return the state attributes of the device."""
-        return {"connection": self.coordinator.devices.devices.get(self.device.id).connection}
+        coord_device: EctoControlAPIDevice = self.coordinator.devices.devices.get(self.device.id)
+        return {
+            "connection": coord_device.connection,
+            "lastUpdate": coord_device.update_time,
+        }
 
     @property
     def device_info(self):

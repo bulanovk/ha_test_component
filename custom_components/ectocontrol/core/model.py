@@ -2,6 +2,7 @@
 import numbers
 import re
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
 
 
@@ -19,6 +20,7 @@ class EctoControlAPIDevice:
     signal_level: str = 0
     system_firmware_version: str = None
     connection: bool = True
+    update_time: datetime = datetime.now()
 
     def __str__(self):
         return f'{self.id}-{self.name}'
@@ -33,6 +35,7 @@ class EctoControlAPIDevice:
             setattr(self, key, value)
         if self.name is not None:
             self.name = re.sub('"(.*)"$', '\\1', self.name)
+            self.update_time=datetime.now()
 
 
 @dataclass
